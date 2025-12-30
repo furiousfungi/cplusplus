@@ -1,5 +1,5 @@
 #include <iostream>
-using namespace std;
+
 
 enum class calculation {
 	add,
@@ -8,29 +8,24 @@ enum class calculation {
 	divide
 };
 
-int main() {
-	float a, b;
-	cin >> a, b;
-	
-	calculation operation = calculation::subtract;
+float calculator(double a, double b, calculation operation) {
 
 	switch (operation) {
-
-	case calculation::add: {
-		cout << a + b;
-	} break;
-	case calculation::divide: {
-		cout << a / b;
-	}break;
-	case calculation::multiply: {
-		cout << a * b;
-	}break;
-	case calculation::subtract: {
-		if (a > b) { cout << a - b; }
-		else { cout << b - a; }
-	}break;
-
+	case calculation::add:
+		return a + b;
+		break;
+	case calculation::divide:
+		return (b != 0) ? (a / b) : 0.0f;
+		break;
+	case calculation::multiply:
+		return a * b;
+		break;
+	case calculation::subtract:
+		return (a > b) ? (a - b) : b - a;
+		break;
 	}
+}					 
 
-
+int main() {
+	std::cout << calculator(50, 10, calculation::subtract);
 }
